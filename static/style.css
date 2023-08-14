@@ -1,0 +1,142 @@
+.login .container{
+    border-radius: 20px;
+    padding: 50px 35px 50px 35px;
+    width: 360px;
+    background-color: lightblue;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.heading{
+    padding-top: 20px;
+}
+
+.create_category{
+    margin-top: 50px;
+}
+
+.create_category .container{
+    border-radius: 10px;
+    padding: 20px 20px;
+    width: 600px;
+    background-color: lightblue;
+}
+
+.categories{
+    margin: 15px;
+}
+
+.categories .card{
+    text-align: center;
+    display: inline-flex;
+    margin: 10px;
+    width: 250px;
+}
+
+.categories .card a{
+    margin-top: 10px;
+}
+
+.heading1{
+    padding-top: 20px;
+}
+
+
+.category-items .container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 20px 20px;
+    background-color: lightgreen;
+}
+
+
+.category-items .container h2{
+    text-align: center;
+}
+
+.category-items .container .card-body{
+    text-align: center;
+}
+
+.category-items .container .card-body table{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered-cell{
+    padding-top: 18px;
+}
+
+.category-items .card{
+    border-radius: 20px;
+    margin: 6px;
+}
+
+.search-container{
+    width: 600px;
+}
+
+.search-container form{
+    font-size: 28px;
+}
+
+.add_to_cart{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-data .container{
+    padding-top: 20px;
+}
+
+.quantity-field {
+    width: 50px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.total_cart .container{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    padding: 20px 20px;
+    width: 600px;
+    background-color: lightseagreen;
+}
+.total_cart .container p{
+    color: aliceblue;
+    font-size: 30px;
+    text-align: center;
+    margin: 8px;
+}
+.total_cart .container span{
+    background-color: aquamarine;
+    padding: 15px;
+    color: black;
+    border-radius: 10px;
+    margin: 20px;
+}
+.actions .container .row .col a{
+    font-size: 24px;
+    margin: 20px 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+}
+
+.actions .container .row .col button{
+    font-size: 24px;
+    margin: 20px 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+}
+

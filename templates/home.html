@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery App</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success" style="padding: 20px 0px 10px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="font-size: 24px; color:yellow; padding-left: 20px;"><b>GROCERY APP</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <h2 class="d-flex mx-auto my-2 my-lg-0" align="center" style="color: white;">Welcome {{ name }}</h2>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <form class="d-flex mx-auto my-2 my-lg-0" action="{{ url_for('home', userid=userid) }}" method="GET" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search for items..." name="search" aria-label="Search" style="width: 400px;">
+                            <button type="submit" class="btn btn-outline-light">Search</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-secondary nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('orders', userid=userid) }}" class="btn btn-light">Your Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-warning nav-link active" href="/cart/{{ userid }}" style="color: black;">CART <i class="fa fa-shopping-cart"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="btn btn-primary mb-3 nav-link active" aria-current="page" href="/logout">LOGOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Main Content -->
+    <div class="category-items">
+        {% for category in categories %}
+        {% set category_items = items | selectattr("category_id", "eq", category.category_id) | list %}
+        {% if category_items %}
+        <div class="container">
+            <h2>{{ category.category_name }}</h2>
+
+            {% for item in items if item.category_id == category.category_id %}
+            <div class="card" style="width: 15rem; display: inline-flex;">
+                <img src="../static/img/{{ (item.item_name).split(' -', 1)[0] }}.jpg" class="card-img-top" alt="Item Image not Found" onerror="this.src='../static/img/Image_Not_Found.jpg';">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.item_name }}</h5>
+                    <p class="card-text">Rs.{{ item.price }}/-</p>
+                    <table class="add_to_cart" cellpadding="5">
+                        <tr>
+                            <form method="POST" action="{{ url_for('add_to_cart', userid=userid, item_name=item.item_name, price=item.price) }}">
+                                <input type="hidden" name="item_name" value="{{ item.item_name }}">
+                                <input type="hidden" name="price" value="{{ item.price }}">
+                                <th>
+                                    <input class="form-control" type="number" id="quantity" name="quantity" placeholder="QTY" min="1" max="{{ item.stock }}" style="width: 75px;" {% if item.stock == 0 %} disabled {% endif %}>
+                                </th>
+                                <th class="centered-cell">
+                                    {% if item.stock == 0 %}
+                                        <button type="submit" class="btn btn-secondary mb-3" disabled>Out of Stock</button>
+                                    {% else %}
+                                        <button type="submit" class="btn btn-outline-success mb-3">Add to Cart</button>
+                                    {% endif %}
+                                </th>
+                            </form>
+                        </tr>
+                    </table>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br>
+        {% endif %}
+        {% endfor %}
+    </div>
+    
+</body>
+</html>
