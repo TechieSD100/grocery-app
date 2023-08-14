@@ -7,22 +7,27 @@ Installation:
 2. Run the following commands below for initial setup, based on Operating System:
 
 Windows:
+```shell
 pip install -r requirements.txt
+```
 
 macOS/Linux:
+```shell
 pip3 install -r requirements.txt
-
+```
 
 
 Run:
 3. Run the following commands below for running the app, based on Operating System:
 
 Windows:
+```shell
 python main.py
-
+```
 macOS/Linux:
+```shell
 python3 main.py
-
+```
 
 
 View & Usage:
